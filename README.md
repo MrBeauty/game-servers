@@ -1,1 +1,1 @@
-# game-servers
+# TBMB- The Bare Minimum Banditos-Servers
