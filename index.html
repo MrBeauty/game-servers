@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Game Servers</title>
+    <title>Game Server Directory</title>
     <style>
         :root {
             --bg-color: #0f111a;
@@ -12,6 +12,7 @@
             --text-color: #f1f2f6;
             --text-muted: #a4b0be;
             --success-color: #2ed573;
+            --button-hover: #ff6b81;
         }
 
         body {
@@ -52,17 +53,10 @@
             border-radius: 8px;
             padding: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.2s, border-color 0.2s;
-            cursor: pointer;
-            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
-
-        .server-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-color);
+            min-height: 220px;
         }
 
         .server-header {
@@ -89,31 +83,45 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent-color);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: bold;
         }
 
         .connection-box {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
             padding: 12px;
             border-radius: 6px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            word-break: break-all;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             margin-bottom: 10px;
         }
 
-        .copy-hint {
-            font-size: 0.7rem;
-            color: var(--text-muted);
+        .ip-text {
+            word-break: break-all;
+            padding-right: 10px;
+            user-select: all;
+        }
+
+        .copy-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-left: 10px;
+            cursor: pointer;
             flex-shrink: 0;
+            transition: background 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--button-hover);
         }
 
         .raw-ip {
@@ -174,128 +182,119 @@
 <body>
 
     <h1>🎮 Game Server Directory 🎮</h1>
-    <p class="subtitle">Click any server card below to copy the connection tunnel address [1]!</p>
+    <p class="subtitle">Click the red copy buttons to instantly copy connection tunnel addresses!</p>
 
     <div class="server-grid">
         <!-- 1. Enshrouded -->
-        <div class="server-card" onclick="copyIP('traded-briefcase.tun.ply.gg')">
+        <div class="server-card">
             <div>
-                <div class="server-header">
-                    <p class="game-name">Enshrouded</p>
-                </div>
-                <div class="player-count">Slots: 0 / 16 Players</div>
+                <div class="server-header"><p class="game-name">Enshrouded</p></div>
+                <div class="player-count">Max Slots: 16 Players</div>
             </div>
             <div>
-                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-label">Tunnel Address</div>
                 <div class="connection-box">
                     <span class="ip-text">traded-briefcase.tun.ply.gg</span>
-                    <span class="copy-hint">Copy</span>
+                    <button class="copy-btn" onclick="copyIP('traded-briefcase.tun.ply.gg')">Copy</button>
                 </div>
-                <p class="raw-ip">Direct: 209.25.140.16:6836</p>
+                <p class="raw-ip">Direct Connection: 209.25.140.16:6836</p>
             </div>
         </div>
 
         <!-- 2. Minecraft Bedrock -->
-        <div class="server-card" onclick="copyIP('thebareminimumbanditos.playit.plus')">
+        <div class="server-card">
             <div>
-                <div class="server-header">
-                    <p class="game-name">Minecraft Bedrock</p>
-                </div>
-                <div class="player-count">Slots: 0 / 10 Players</div>
+                <div class="server-header"><p class="game-name">Minecraft Bedrock</p></div>
+                <div class="player-count">Max Slots: 10 Players</div>
             </div>
             <div>
-                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-label">Tunnel Address</div>
                 <div class="connection-box">
                     <span class="ip-text">thebareminimumbanditos.playit.plus</span>
-                    <span class="copy-hint">Copy</span>
+                    <button class="copy-btn" onclick="copyIP('thebareminimumbanditos.playit.plus')">Copy</button>
                 </div>
-                <p class="raw-ip">Direct: 147.185.221.213:30630</p>
+                <p class="raw-ip">Direct Connection: 147.185.221.213:30630</p>
             </div>
         </div>
 
         <!-- 3. Minecraft Java Modded -->
-        <div class="server-card" onclick="copyIP('thebareminimumbanditomc.playit.plus')">
+        <div class="server-card">
             <div>
-                <div class="server-header">
-                    <p class="game-name">Minecraft Java Modded</p>
-                </div>
-                <div class="player-count">Slots: 0 / 10 Players</div>
+                <div class="server-header"><p class="game-name">Minecraft Java Modded</p></div>
+                <div class="player-count">Max Slots: 10 Players</div>
             </div>
             <div>
-                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-label">Tunnel Address</div>
                 <div class="connection-box">
                     <span class="ip-text">thebareminimumbanditomc.playit.plus</span>
-                    <span class="copy-hint">Copy</span>
+                    <button class="copy-btn" onclick="copyIP('thebareminimumbanditomc.playit.plus')">Copy</button>
                 </div>
-                <p class="raw-ip">Direct: 209.25.140.16:25565</p>
+                <p class="raw-ip">Direct Connection: 209.25.140.16:25565</p>
             </div>
         </div>
 
         <!-- 4. Runescape Dragon Wilds -->
-        <div class="server-card" onclick="copyIP('cairo-traps.tun.ply.gg')">
+        <div class="server-card">
             <div>
-                <div class="server-header">
-                    <p class="game-name">Runescape Dragon Wilds</p>
-                </div>
-                <div class="player-count">Slots: 0 / 6 Players</div>
+                <div class="server-header"><p class="game-name">Runescape Dragon Wilds</p></div>
+                <div class="player-count">Max Slots: 6 Players</div>
             </div>
             <div>
-                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-label">Tunnel Address</div>
                 <div class="connection-box">
                     <span class="ip-text">cairo-traps.tun.ply.gg</span>
-                    <span class="copy-hint">Copy</span>
+                    <button class="copy-btn" onclick="copyIP('cairo-traps.tun.ply.gg')">Copy</button>
                 </div>
-                <p class="raw-ip">Direct: 69.9.177.16:43033</p>
+                <p class="raw-ip">Direct Connection: 69.9.177.16:43033</p>
             </div>
         </div>
 
         <!-- 5. 7 Days to Die -->
-        <div class="server-card" onclick="copyIP('laurel-overflow.tun.ply.gg')">
+        <div class="server-card">
             <div>
-                <div class="server-header">
-                    <p class="game-name">7 Days to Die</p>
-                </div>
-                <div class="player-count">Slots: 0 / 10 Players</div>
+                <div class="server-header"><p class="game-name">7 Days to Die</p></div>
+                <div class="player-count">Max Slots: 10 Players</div>
             </div>
             <div>
-                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-label">Tunnel Address</div>
                 <div class="connection-box">
                     <span class="ip-text">laurel-overflow.tun.ply.gg</span>
-                    <span class="copy-hint">Copy</span>
+                    <button class="copy-btn" onclick="copyIP('laurel-overflow.tun.ply.gg')">Copy</button>
                 </div>
-                <p class="raw-ip">Direct: 209.25.140.16:46079</p>
+                <p class="raw-ip">Direct Connection: 209.25.140.16:46079</p>
             </div>
         </div>
 
         <!-- 6. Satisfactory -->
-        <div class="server-card" onclick="copyIP('rails-forgive.tun.ply.gg')">
+        <div class="server-card">
             <div>
-                <div class="server-header">
-                    <p class="game-name">Satisfactory</p>
-                </div>
-                <div class="player-count">Slots: 0 / 10 Players</div>
+                <div class="server-header"><p class="game-name">Satisfactory</p></div>
+                <div class="player-count">Max Slots: 10 Players</div>
             </div>
             <div>
-                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-label">Tunnel Address</div>
                 <div class="connection-box">
                     <span class="ip-text">rails-forgive.tun.ply.gg</span>
-                    <span class="copy-hint">Copy</span>
+                    <button class="copy-btn" onclick="copyIP('rails-forgive.tun.ply.gg')">Copy</button>
                 </div>
-                <p class="raw-ip">Direct: 209.25.140.16:3820</p>
+                <p class="raw-ip">Direct Connection: 209.25.140.16:3820</p>
             </div>
         </div>
 
         <!-- 7. Space Engineers 1 -->
-        <div class="server-card" onclick="copyIP('spaceengineerstbmb.playit.plus')">
+        <div class="server-card">
             <div>
-                <div class="server-header">
-                    <p class="game-name">Space Engineers 1</p>
-                </div>
-                <div class="player-count">Slots: 0 / 10 Players</div>
+                <div class="server-header"><p class="game-name">Space Engineers 1</p></div>
+                <div class="player-count">Max Slots: 10 Players</div>
             </div>
             <div>
-                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-label">Tunnel Address</div>
                 <div class="connection-box">
                     <span class="ip-text">spaceengineerstbmb.playit.plus</span>
-                    <span class="copy-hint">Copy</span>
+                    <button class="copy-btn" onclick="copyIP('spaceengineerstbmb.playit.plus')">Copy</button>
                 </div>
+                <p class="raw-ip">Direct Connection: 69.9.177.16:57430</p>
+            </div>
+        </div>
+
+        <!-- 8. Vintage Story -->
