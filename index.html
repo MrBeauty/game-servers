@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Game Servers</title>
+    <style>
+        :root {
+            --bg-color: #0f111a;
+            --card-bg: #1a1d2e;
+            --accent-color: #ff4757;
+            --text-color: #f1f2f6;
+            --text-muted: #a4b0be;
+            --success-color: #2ed573;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .server-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .server-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .server-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        .server-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .game-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .player-count {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .connection-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .connection-box {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+
+        .copy-hint {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+
+        .raw-ip {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Rules Section */
+        .rules-container {
+            margin-top: 60px;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .rules-container h2 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+        }
+
+        .rules-list {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .rules-list li {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎮 Game Server Directory 🎮</h1>
+    <p class="subtitle">Click any server card below to copy the connection tunnel address [1]!</p>
+
+    <div class="server-grid">
+        <!-- 1. Enshrouded -->
+        <div class="server-card" onclick="copyIP('traded-briefcase.tun.ply.gg')">
+            <div>
+                <div class="server-header">
+                    <p class="game-name">Enshrouded</p>
+                </div>
+                <div class="player-count">Slots: 0 / 16 Players</div>
+            </div>
+            <div>
+                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-box">
+                    <span class="ip-text">traded-briefcase.tun.ply.gg</span>
+                    <span class="copy-hint">Copy</span>
+                </div>
+                <p class="raw-ip">Direct: 209.25.140.16:6836</p>
+            </div>
+        </div>
+
+        <!-- 2. Minecraft Bedrock -->
+        <div class="server-card" onclick="copyIP('thebareminimumbanditos.playit.plus')">
+            <div>
+                <div class="server-header">
+                    <p class="game-name">Minecraft Bedrock</p>
+                </div>
+                <div class="player-count">Slots: 0 / 10 Players</div>
+            </div>
+            <div>
+                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-box">
+                    <span class="ip-text">thebareminimumbanditos.playit.plus</span>
+                    <span class="copy-hint">Copy</span>
+                </div>
+                <p class="raw-ip">Direct: 147.185.221.213:30630</p>
+            </div>
+        </div>
+
+        <!-- 3. Minecraft Java Modded -->
+        <div class="server-card" onclick="copyIP('thebareminimumbanditomc.playit.plus')">
+            <div>
+                <div class="server-header">
+                    <p class="game-name">Minecraft Java Modded</p>
+                </div>
+                <div class="player-count">Slots: 0 / 10 Players</div>
+            </div>
+            <div>
+                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-box">
+                    <span class="ip-text">thebareminimumbanditomc.playit.plus</span>
+                    <span class="copy-hint">Copy</span>
+                </div>
+                <p class="raw-ip">Direct: 209.25.140.16:25565</p>
+            </div>
+        </div>
+
+        <!-- 4. Runescape Dragon Wilds -->
+        <div class="server-card" onclick="copyIP('cairo-traps.tun.ply.gg')">
+            <div>
+                <div class="server-header">
+                    <p class="game-name">Runescape Dragon Wilds</p>
+                </div>
+                <div class="player-count">Slots: 0 / 6 Players</div>
+            </div>
+            <div>
+                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-box">
+                    <span class="ip-text">cairo-traps.tun.ply.gg</span>
+                    <span class="copy-hint">Copy</span>
+                </div>
+                <p class="raw-ip">Direct: 69.9.177.16:43033</p>
+            </div>
+        </div>
+
+        <!-- 5. 7 Days to Die -->
+        <div class="server-card" onclick="copyIP('laurel-overflow.tun.ply.gg')">
+            <div>
+                <div class="server-header">
+                    <p class="game-name">7 Days to Die</p>
+                </div>
+                <div class="player-count">Slots: 0 / 10 Players</div>
+            </div>
+            <div>
+                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-box">
+                    <span class="ip-text">laurel-overflow.tun.ply.gg</span>
+                    <span class="copy-hint">Copy</span>
+                </div>
+                <p class="raw-ip">Direct: 209.25.140.16:46079</p>
+            </div>
+        </div>
+
+        <!-- 6. Satisfactory -->
+        <div class="server-card" onclick="copyIP('rails-forgive.tun.ply.gg')">
+            <div>
+                <div class="server-header">
+                    <p class="game-name">Satisfactory</p>
+                </div>
+                <div class="player-count">Slots: 0 / 10 Players</div>
+            </div>
+            <div>
+                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-box">
+                    <span class="ip-text">rails-forgive.tun.ply.gg</span>
+                    <span class="copy-hint">Copy</span>
+                </div>
+                <p class="raw-ip">Direct: 209.25.140.16:3820</p>
+            </div>
+        </div>
+
+        <!-- 7. Space Engineers 1 -->
+        <div class="server-card" onclick="copyIP('spaceengineerstbmb.playit.plus')">
+            <div>
+                <div class="server-header">
+                    <p class="game-name">Space Engineers 1</p>
+                </div>
+                <div class="player-count">Slots: 0 / 10 Players</div>
+            </div>
+            <div>
+                <div class="connection-label">Tunnel Address [1] (Click to copy)</div>
+                <div class="connection-box">
+                    <span class="ip-text">spaceengineerstbmb.playit.plus</span>
+                    <span class="copy-hint">Copy</span>
+                </div>
